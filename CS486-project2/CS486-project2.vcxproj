@@ -115,6 +115,17 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="k-assembler.hpp" />
+    <ClInclude Include="sequence.hpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="deBruijnByHash.cpp" />
+    <ClCompile Include="deBruijnByStringComp.cpp" />
+    <ClCompile Include="EulerPath.cpp" />
+    <ClCompile Include="k-assembler.cpp" />
+    <ClCompile Include="main.cpp" />
+    <ClCompile Include="sequence.cpp" />
+    <ClCompile Include="test.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
