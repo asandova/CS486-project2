@@ -24,9 +24,30 @@ struct DNAHasher
         // TO DO: Write a DNA sequence hash function here
         
         // BEGIN your code here:
-        
-
-        
+		size_t val = 0;
+		size_t max_width = 32;
+		for (size_t i = 0; i < seq.size() && i < max_width; ++i) {
+			val = val << 2;
+			size_t n;
+			switch (seq[i]) {
+				case 'A':
+				case 'a':
+					n = 0;
+					break;
+				case 'C':
+				case 'c':
+					n = 1;
+					break;
+				case 'G':
+				case 'g':
+					n = 2;
+					break;
+				default:
+					n = 3;
+					break;
+			}
+			val += n;
+		}
         // END your code above
     }
 };

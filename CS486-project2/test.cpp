@@ -14,6 +14,7 @@
 #include <vector>
 #include <string>
 #include <sstream>
+#include <ctime>
 
 using namespace std;
 
@@ -80,9 +81,9 @@ static void test_1 (const string & method)
         cout << "Elapsed time for building de Bruijn graph: " << elapsed_secs << endl;
         
         if(has_Eulerian_path(g)) {
-            std::cout << "Passed test for existence of Eulerian path. Congratulations!" << endl;
+            cout << "Passed test for existence of Eulerian path. Congratulations!" << endl;
         } else {
-            std::cout << "Failed test for existence of Eulerian path!" << endl;
+            cout << "Failed test for existence of Eulerian path!" << endl;
         }
         
         try {
