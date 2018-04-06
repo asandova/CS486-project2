@@ -23,19 +23,19 @@ string random_DNA_sequence(size_t min_length=10, size_t max_length=10000)
 {
     string DNA;
     
-    std::random_device rd;
-    std::mt19937 gen(rd());
-    std::uniform_int_distribution<size_t> length_dis(min_length, max_length);
+    random_device rd;
+    mt19937 gen(rd());
+    uniform_int_distribution<unsigned int> length_dis(min_length, max_length);
     
     // random generate a length
     DNA.resize(length_dis(gen));
     
     // random generate the DNA sequence using alphabet atgc
-    std::uniform_int_distribution<unsigned char> nucleotide_dis(0, 3);
+    uniform_int_distribution<unsigned int> nucleotide_dis(0, 3);
     
     string atgc = "atgc";
     
-    for (int n=0; n<DNA.size(); ++n) {
+    for (int n = 0; n < DNA.size(); ++n) {
         DNA[n] = atgc[nucleotide_dis(gen)];
     }
     
@@ -55,13 +55,13 @@ vector<string> get_kmers(string seq, size_t k, bool randomized=true)
     if (randomized) {
         vector<string> randomized_kmers(kmers.size());
         
-        std::random_device rd;
-        std::mt19937 gen(rd());
+        random_device rd;
+        mt19937 gen(rd());
         
         size_t nkmers = kmers.size();
         
         for (size_t i=0; i<nkmers-1; ++i) {
-            std::uniform_int_distribution<size_t> dis(i, kmers.size()-1);
+            uniform_int_distribution<unsigned int> dis(i, kmers.size()-1);
             size_t j = dis(gen);
             string kmer = kmers[j];
             kmers[j] = kmers[i];
