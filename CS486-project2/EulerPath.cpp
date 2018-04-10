@@ -50,71 +50,46 @@ list<size_t> find_Eulerian_cycle(DiGraph & g)
 {
     list <size_t> cycle; // main cycle
     
-    // TO-DO: insert code to find Eulerian cycle represented
-    //   as a list of node id.
-    // E.g., 3 -> 2 -> 0 -> 3 -> 4 -> 1 -> 3 is a cycle on
-    //   a graph with 5 nodes.
-    
+    //Eulerian cycle represented as a list of node id.
     // BEGIN your code here:
     
-    vector<Node> & nodes = g.m_nodes;
-    
-    // initialize the cycle to include the first node in the graph
-    cycle.push_back(0);
-    
-    for (auto itr=cycle.begin(); itr!=cycle.end(); ++itr) {
-        // for each node in the current cycle
-        size_t i = *itr;
-        
-        auto & outgoing = nodes[i].m_outgoing;
-        
-        while (outgoing.size() > 0) {
-            
-            // side cycle starting from node i
-            list <size_t> side;
-            
-            size_t next = outgoing.front();
-            
-            // remove the edge (i, next)
-            outgoing.pop_front();
-            
-            // update the number of incoming edges for node next
-            nodes[next].m_num_of_incoming --;
-            
-            // if the node has outgoing edge
-            side.push_back(next);
-            
-            while (next != i) {
-                //   extend the side cycle
-                size_t current = next;
-                
-                if (nodes[current].m_outgoing.size() > 0) {
-                    
-                    next = nodes[current].m_outgoing.front();
-                    
+    vector<Node> &nodes = g.m_nodes;  //DiGraph, copy nodes
+    cycle.push_back(0); //push first node to initialize the main cycle
+   // Use iterate Cycle to find all the side cycles then, save to main (cycle)
+    for (auto iterateCycle=cycle.begin(); iterateCycle!=cycle.end(); ++iterateCycle) {
+        unsigned long long currentLocation = *iterateCycle; 
+		//same node index can show up multiple times to indicate multiple edges from same node (outgoing)
+        auto & numEdges = nodes[currentLocation].m_outgoing; 
+        while (numEdges.size() > 0) {  //more than one edge
+            list <unsigned long long> side;  //list of nodes, for side cycle to be saved
+			unsigned long long nodeExplored = numEdges.front(); //copy next edge unto nodeExplored
+			numEdges.pop_front(); //remove that edge / decrease numEdges
+            nodes[nodeExplored].m_num_of_incoming --; //update number of edges
+            side.push_back(nodeExplored); //place 'nodeExplored' on list
+			//try to find a cycle from current nodeExplored
+            while (nodeExplored != currentLocation) {
+				unsigned long long current = nodeExplored;
+                if (nodes[current].m_outgoing.size() > 0) {     
+					nodeExplored = nodes[current].m_outgoing.front();
                     // remove the edge (current, next)
                     nodes[current].m_outgoing.pop_front();
                     // update the number of incoming edges for node next
-                    nodes[next].m_num_of_incoming --;
-                    
-                    side.push_back(next);
-                    current = next;
+                    nodes[nodeExplored].m_num_of_incoming --;
+                    side.push_back(nodeExplored);
+                    current = nodeExplored;
                 }
             }
-            
-            if(next != i) {
-                throw "ERROR: finding Eulerian path failed!";
-            } else {
-                auto itr_ngb = itr;
-                itr_ngb ++;
+            if(nodeExplored != currentLocation) { //cycle not complete
+                throw "ERROR: Eulerian path not found.  Failed!";
+            } 
+			else {
+                auto sideCycle = iterateCycle;
+                sideCycle ++;
                 // insert the side cycle into the main cycle
-                cycle.insert(itr_ngb, side.begin(), side.end());
+                cycle.insert(sideCycle, side.begin(), side.end());
             }
         }
     }
-    
-    // END your code above
-
     return cycle;
 }
 
