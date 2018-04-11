@@ -21,6 +21,18 @@
     <ClInclude Include="sequence.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="EulerPath.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="deBruijnByStringComp.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="deBruijnByHash.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="test.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="deBruijnByHash.cpp">
@@ -44,5 +56,10 @@
     <ClCompile Include="test.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="makefile">
+      <Filter>Resource Files</Filter>
+    </Text>
   </ItemGroup>
 </Project>

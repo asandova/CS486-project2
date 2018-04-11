@@ -9,8 +9,12 @@
 
 #include "sequence.hpp"
 #include "k-assembler.hpp"
+<<<<<<< HEAD
 #include "deBruijnByHash.cpp"
 #include "EulerPath.cpp"
+=======
+#include "test.hpp"
+>>>>>>> 88106003d51caee5190e6e2a927e9e0e342ce174
 
 #include <iostream>
 #include <vector>

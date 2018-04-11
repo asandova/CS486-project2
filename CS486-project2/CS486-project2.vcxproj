@@ -115,8 +115,12 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="deBruijnByHash.hpp" />
+    <ClInclude Include="deBruijnByStringComp.hpp" />
+    <ClInclude Include="EulerPath.hpp" />
     <ClInclude Include="k-assembler.hpp" />
     <ClInclude Include="sequence.hpp" />
+    <ClInclude Include="test.hpp" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="deBruijnByHash.cpp" />
@@ -126,6 +130,9 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="sequence.cpp" />
     <ClCompile Include="test.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="makefile" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

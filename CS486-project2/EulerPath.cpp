@@ -8,6 +8,7 @@
 //  Updated 3/19/2018
 
 #include "k-assembler.hpp"
+#include "EulerPath.hpp"
 
 using namespace std;
 

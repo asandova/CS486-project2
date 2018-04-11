@@ -8,11 +8,13 @@
 //  Updated 3/19/2018
 
 #include <string>
+#include "test.hpp"
+
 using namespace std;
 
-extern void test_seq_assembly();
+//extern void test_seq_assembly();
 
-extern void test_3(const string & method);
+//extern void test_3(const string & method);
 
 int main(int argc, const char * argv[])
 {
