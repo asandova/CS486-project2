@@ -45,52 +45,49 @@ size_t sink(const DiGraph & g)
 }
 
 
+//Eulerian cycle represented as a list of node id.
 list<size_t> find_Eulerian_cycle(DiGraph & g)
 // find an Eulerian cycle from graph g
 {
-    list <size_t> cycle; // main cycle
-    
-    //Eulerian cycle represented as a list of node id.
-    // BEGIN your code here:
-    
-    vector<Node> &nodes = g.m_nodes;  //DiGraph, copy nodes
-    cycle.push_back(0); //push first node to initialize the main cycle
-   // Use iterate Cycle to find all the side cycles then, save to main (cycle)
-    for (auto iterateCycle=cycle.begin(); iterateCycle!=cycle.end(); ++iterateCycle) {
-        unsigned long long currentLocation = *iterateCycle; 
+    list <size_t> mainCycle; // main cycle
+    vector<Node> &nodes = g.m_nodes;  //DiGraph, copy nodes and create vectors to explore
+	mainCycle.push_back(0); //place first node to initialize the main cycle
+   // Use iterate Cycle to find all the side cycles(smaller cycles), then save to main (cycle)
+    for (auto iterateCycle = mainCycle.begin(); iterateCycle != mainCycle.end(); ++iterateCycle) {
+        unsigned long long currentIndex = *iterateCycle; 
 		//same node index can show up multiple times to indicate multiple edges from same node (outgoing)
-        auto & numEdges = nodes[currentLocation].m_outgoing; 
+        auto & numEdges = nodes[currentIndex].m_outgoing;
         while (numEdges.size() > 0) {  //more than one edge
             list <unsigned long long> side;  //list of nodes, for side cycle to be saved
-			unsigned long long nodeExplored = numEdges.front(); //copy next edge unto nodeExplored
+			unsigned long long nodeExplored = numEdges.front(); //copy next node/edge unto nodeExplored
 			numEdges.pop_front(); //remove that edge / decrease numEdges
             nodes[nodeExplored].m_num_of_incoming --; //update number of edges
-            side.push_back(nodeExplored); //place 'nodeExplored' on list
+            side.push_back(nodeExplored); //place 'nodeExplored' on side list cycle
 			//try to find a cycle from current nodeExplored
-            while (nodeExplored != currentLocation) {
+            while (nodeExplored != currentIndex) {
 				unsigned long long current = nodeExplored;
-                if (nodes[current].m_outgoing.size() > 0) {     
-					nodeExplored = nodes[current].m_outgoing.front();
+                if (nodes[current].m_outgoing.size() > 0) {  //if there are edges   
+					nodeExplored = nodes[current].m_outgoing.front(); //apend nodeExplored
                     // remove the edge (current, next)
                     nodes[current].m_outgoing.pop_front();
                     // update the number of incoming edges for node next
                     nodes[nodeExplored].m_num_of_incoming --;
-                    side.push_back(nodeExplored);
-                    current = nodeExplored;
+                    side.push_back(nodeExplored); //update side cycle
+                    current = nodeExplored; //iterate
                 }
             }
-            if(nodeExplored != currentLocation) { //cycle not complete
+            if(nodeExplored != currentIndex) { //cycle not complete
                 throw "ERROR: Eulerian path not found.  Failed!";
             } 
-			else {
+			else { //side cycle complete
                 auto sideCycle = iterateCycle;
                 sideCycle ++;
                 // insert the side cycle into the main cycle
-                cycle.insert(sideCycle, side.begin(), side.end());
+				mainCycle.insert(sideCycle, side.begin(), side.end());
             }
         }
     }
-    return cycle;
+    return mainCycle;
 }
 
 list<size_t> find_Eulerian_path(DiGraph & g)
