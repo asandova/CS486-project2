@@ -9,6 +9,7 @@
 
 #include "sequence.hpp"
 #include "k-assembler.hpp"
+#include "test.hpp"
 
 #include <iostream>
 #include <vector>

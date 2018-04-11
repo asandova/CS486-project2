@@ -16,6 +16,7 @@
 
 
 #include "k-assembler.hpp"
+#include "deBruijnByHash.hpp"
 
 #include <iostream>
 #include <unordered_map>

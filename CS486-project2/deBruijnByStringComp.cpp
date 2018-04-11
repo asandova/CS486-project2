@@ -8,6 +8,7 @@
 //  Updated 3/19/2018
 
 #include "k-assembler.hpp"
+#include "deBruijnByStringComp.hpp"
 
 void create_deBruijn_graph_by_string_comp(const vector<string> & kmers, DiGraph & g)
 // Insert all k mers into graph g by pair-wise sequence comparison
