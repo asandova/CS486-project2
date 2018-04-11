@@ -15,9 +15,9 @@
 
 using namespace std;
 
-extern struct DNAHasher;
+struct DNAHasher;
 
-extern struct AlphabetHasher;
+struct AlphabetHasher;
 
 typedef unordered_multimap<string, size_t, DNAHasher> CSeqHash;
 

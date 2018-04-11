@@ -9,12 +9,10 @@
 
 #include "sequence.hpp"
 #include "k-assembler.hpp"
-<<<<<<< HEAD
-#include "deBruijnByHash.cpp"
-#include "EulerPath.cpp"
-=======
+#include "deBruijnByHash.hpp"
+#include "deBruijnByStringComp.hpp"
+#include "EulerPath.hpp"
 #include "test.hpp"
->>>>>>> 88106003d51caee5190e6e2a927e9e0e342ce174
 
 #include <iostream>
 #include <vector>
@@ -38,7 +36,7 @@ void test_and_print_message(const string & seq, const string & seq_truth,
     }
 }
 
-static void test_1 (const string & method)
+void test_1 (const string & method)
 {
     cout << "Testing k-assembler by " << method << endl;
     
@@ -108,7 +106,7 @@ static void test_1 (const string & method)
     }
 }
 
-static void test_2(const string & method)
+void test_2(const string & method)
 {
     string seq_truth = random_DNA_sequence();
     size_t k=10;
